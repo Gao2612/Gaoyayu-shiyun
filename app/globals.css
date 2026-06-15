@@ -1,0 +1,173 @@
+:root {
+  color-scheme: dark;
+  --background: #02040a;
+  --text: #f2eee5;
+  --muted: #8e98aa;
+  --border: rgba(216, 226, 238, 0.24);
+  --accent: #b8dce6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, #0b1830 0%, #040914 35%, #02040a 70%);
+  color: var(--text);
+  font-family:
+    "Microsoft YaHei UI",
+    "Noto Sans SC",
+    sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.galaxy-canvas {
+  position: absolute !important;
+  inset: 0;
+  z-index: -1;
+}
+
+.brand {
+  position: absolute;
+  top: clamp(28px, 5vw, 68px);
+  left: clamp(24px, 6vw, 88px);
+  pointer-events: none;
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family:
+    "Songti SC",
+    "STSong",
+    serif;
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 34px rgba(183, 220, 230, 0.2);
+}
+
+.brand p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+}
+
+.enter-button {
+  position: absolute;
+  top: clamp(34px, 5vw, 72px);
+  right: clamp(24px, 6vw, 88px);
+  min-width: 112px;
+  padding: 11px 22px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(4, 9, 20, 0.36);
+  color: var(--text);
+  cursor: pointer;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.enter-button:hover {
+  border-color: rgba(184, 220, 230, 0.62);
+  background: rgba(20, 40, 64, 0.52);
+  transform: translateY(-1px);
+}
+
+.enter-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.interaction-tip,
+.day-status {
+  position: absolute;
+  bottom: clamp(24px, 5vw, 60px);
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+.interaction-tip {
+  left: clamp(24px, 6vw, 88px);
+}
+
+.day-status {
+  right: clamp(24px, 6vw, 88px);
+}
+
+.is-entered .brand {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.is-entered .interaction-tip,
+.is-entered .day-status {
+  color: rgba(184, 220, 230, 0.72);
+}
+
+@media (max-width: 640px) {
+  .brand {
+    top: 28px;
+    left: 24px;
+  }
+
+  .brand h1 {
+    font-size: 34px;
+  }
+
+  .enter-button {
+    top: auto;
+    right: 24px;
+    bottom: 68px;
+  }
+
+  .interaction-tip {
+    bottom: 28px;
+    left: 24px;
+  }
+
+  .day-status {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
