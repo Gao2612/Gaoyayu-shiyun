@@ -1,24 +1,43 @@
 "use client";
 
-import { OrbitControls, Sparkles, Stars } from "@react-three/drei";
+import { Sparkles, Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { useMemo } from "react";
+
+import { GalaxyCamera } from "@/components/galaxy/GalaxyCamera";
 import { PoemStars } from "@/components/galaxy/PoemStars";
+import { createPoemStarVisuals } from "@/lib/poem-star-visual";
+import { useGalaxyStore } from "@/store/galaxy-store";
 import type { Poem } from "@/types/poem";
+import type { PoemPosition } from "@/types/poem";
 
 type GalaxySceneProps = Readonly<{
-  isEntered: boolean;
   poems: readonly Poem[];
 }>;
 
 export function GalaxyScene(
   props: GalaxySceneProps,
 ): React.ReactElement {
+  const selectedPoemId = useGalaxyStore(
+    (state) => state.selectedPoemId,
+  );
+  const clearSelection = useGalaxyStore(
+    (state) => state.clearSelection,
+  );
+  const selectedPosition: PoemPosition | null = useMemo(() => {
+    const selectedStar = createPoemStarVisuals(props.poems).find(
+      (star) => star.id === selectedPoemId,
+    );
+    return selectedStar?.position ?? null;
+  }, [props.poems, selectedPoemId]);
+
   return (
     <Canvas
       className="galaxy-canvas"
       camera={{ position: [0, 0, 12], fov: 52 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, alpha: true }}
+      onPointerMissed={clearSelection}
     >
       <color args={["#02040a"]} attach="background" />
       <fog args={["#02040a", 12, 34]} attach="fog" />
@@ -41,13 +60,8 @@ export function GalaxyScene(
         speed={0.12}
       />
       <PoemStars poems={props.poems} />
-      <OrbitControls
-        autoRotate
-        autoRotateSpeed={props.isEntered ? 0.42 : 0.18}
-        enableDamping
-        enablePan={false}
-        maxDistance={20}
-        minDistance={6}
+      <GalaxyCamera
+        selectedPosition={selectedPosition}
       />
     </Canvas>
   );

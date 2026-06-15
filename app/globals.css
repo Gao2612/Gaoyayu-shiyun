@@ -92,6 +92,7 @@ button {
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
+    opacity 180ms ease,
     transform 180ms ease;
 }
 
@@ -104,6 +105,12 @@ button {
 .enter-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+
+.has-selection .enter-button {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
 }
 
 .interaction-tip,
@@ -135,6 +142,179 @@ button {
   color: rgba(184, 220, 230, 0.72);
 }
 
+.poem-detail {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: min(430px, 100vw);
+  height: 100dvh;
+  flex-direction: column;
+  border-left: 1px solid rgba(164, 208, 255, 0.2);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 17, 34, 0.96),
+      rgba(5, 9, 21, 0.98)
+    );
+  box-shadow: -24px 0 64px rgba(0, 0, 0, 0.34);
+  color: rgba(245, 248, 255, 0.9);
+  animation: poem-detail-enter 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(20px);
+}
+
+@keyframes poem-detail-enter {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.poem-detail-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid rgba(164, 208, 255, 0.12);
+}
+
+.poem-detail-collection {
+  margin: 0 0 9px;
+  color: rgba(156, 205, 255, 0.64);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+
+.poem-detail-header h2 {
+  margin: 0;
+  font-family:
+    "Songti SC",
+    "STSong",
+    serif;
+  font-size: clamp(29px, 4vw, 42px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.poem-detail-close {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: rgba(225, 235, 249, 0.56);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.poem-detail-close:hover {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.poem-detail-scroll {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px 32px 32px;
+  scrollbar-color:
+    rgba(142, 198, 255, 0.42)
+    rgba(255, 255, 255, 0.04);
+  scrollbar-width: thin;
+}
+
+.poem-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  color: rgba(204, 221, 240, 0.54);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.poem-detail-content {
+  margin: 32px 0 40px;
+  overflow-wrap: anywhere;
+  color: rgba(244, 247, 252, 0.88);
+  font-family:
+    "Songti SC",
+    "STSong",
+    serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  line-height: 2.05;
+  white-space: pre-wrap;
+}
+
+.poem-detail-tags h3 {
+  margin: 0 0 14px;
+  color: rgba(204, 221, 240, 0.54);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+}
+
+.poem-detail-tags ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.poem-detail-tags li {
+  border: 1px solid rgba(157, 203, 255, 0.18);
+  border-radius: 999px;
+  padding: 6px 11px;
+  background: rgba(102, 157, 224, 0.08);
+  color: rgba(188, 220, 255, 0.74);
+  font-size: 12px;
+}
+
+.poem-detail-empty {
+  margin: 0;
+  color: rgba(204, 221, 240, 0.42);
+  font-size: 13px;
+}
+
+.poem-detail-footer {
+  flex: 0 0 auto;
+  padding: 20px 32px 24px;
+  border-top: 1px solid rgba(164, 208, 255, 0.12);
+}
+
+.poem-detail-footer button {
+  width: 100%;
+  border: 1px solid rgba(166, 211, 255, 0.28);
+  border-radius: 999px;
+  padding: 13px 16px;
+  background: rgba(110, 164, 231, 0.1);
+  color: rgba(244, 248, 255, 0.88);
+  cursor: pointer;
+  letter-spacing: 0.12em;
+}
+
+.poem-detail-footer button:hover {
+  border-color: rgba(178, 216, 255, 0.62);
+  background: rgba(110, 164, 231, 0.18);
+}
+
+.poem-detail-footer p {
+  margin: 11px 0 0;
+  color: rgba(204, 221, 240, 0.38);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .brand {
     top: 28px;
@@ -158,6 +338,40 @@ button {
 
   .day-status {
     display: none;
+  }
+
+  .poem-detail {
+    top: auto;
+    bottom: 0;
+    width: 100vw;
+    height: min(75dvh, 672px);
+    border-top: 1px solid rgba(164, 208, 255, 0.2);
+    border-left: 0;
+    animation-name: poem-detail-enter-mobile;
+  }
+
+  @keyframes poem-detail-enter-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .poem-detail-header {
+    padding: 22px 20px 16px;
+  }
+
+  .poem-detail-scroll {
+    padding: 18px 20px 24px;
+  }
+
+  .poem-detail-footer {
+    padding: 16px 20px 18px;
   }
 }
 
