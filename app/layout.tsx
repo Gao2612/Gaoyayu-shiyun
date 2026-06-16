@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "个人诗云",
+  title: "梦痕",
   description: "只收录一位作者作品的三维诗歌宇宙",
 };
 

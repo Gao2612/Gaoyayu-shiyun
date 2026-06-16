@@ -1,7 +1,7 @@
 import type { ProjectProfile } from "@/types/project";
 
 export const PROJECT_PROFILE: ProjectProfile = {
-  name: "个人诗云",
+  name: "梦痕",
   author: "未署名诗人",
   initialPoemCount: 30,
   visualDirection: {
