@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "data:build": "tsx scripts/build-poems.ts",
     "prebuild": "npm run data:build",
     "build": "next build",

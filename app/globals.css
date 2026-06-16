@@ -72,18 +72,24 @@ button {
 .brand-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 14px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   line-height: 1.45;
   white-space: nowrap;
 }
 
 .brand-author {
+  display: inline-block;
+  min-width: 3.4em;
   color: rgba(242, 238, 229, 0.72);
-  letter-spacing: 0.04em;
+  font-family:
+    "Microsoft YaHei UI",
+    "Noto Sans SC",
+    sans-serif;
+  letter-spacing: 0;
 }
 
 .brand-divider {
