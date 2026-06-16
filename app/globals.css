@@ -69,34 +69,6 @@ button {
   text-shadow: 0 0 34px rgba(183, 220, 230, 0.2);
 }
 
-.brand-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 14px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  line-height: 1.45;
-  white-space: nowrap;
-}
-
-.brand-author {
-  display: inline-block;
-  min-width: 3.4em;
-  color: rgba(242, 238, 229, 0.72);
-  font-family:
-    "Microsoft YaHei UI",
-    "Noto Sans SC",
-    sans-serif;
-  letter-spacing: 0;
-}
-
-.brand-divider {
-  color: rgba(184, 220, 230, 0.55);
-  letter-spacing: 0;
-}
-
 .enter-button {
   position: absolute;
   top: clamp(34px, 5vw, 72px);
@@ -137,7 +109,7 @@ button {
 .poem-search {
   position: absolute;
   z-index: 3;
-  top: clamp(96px, 13vw, 148px);
+  top: clamp(104px, 12vw, 144px);
   left: clamp(24px, 6vw, 88px);
   width: min(360px, calc(100vw - 48px));
   color: rgba(245, 248, 255, 0.9);
@@ -259,7 +231,7 @@ button {
 .poem-filter-panel {
   position: absolute;
   z-index: 3;
-  top: clamp(184px, 23vw, 252px);
+  top: clamp(188px, 22vw, 248px);
   left: clamp(24px, 6vw, 88px);
   display: grid;
   width: min(360px, calc(100vw - 48px));
