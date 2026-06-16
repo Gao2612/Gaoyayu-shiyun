@@ -118,8 +118,12 @@ export function HomeExperience(): React.ReactElement {
 
       <header className="brand">
         <h1>{PROJECT_PROFILE.name}</h1>
-        <p>
-          {PROJECT_PROFILE.author} · {POEMS.length} 首示例诗
+        <p className="brand-meta">
+          <span className="brand-author">
+            {PROJECT_PROFILE.author}
+          </span>
+          <span aria-hidden="true" className="brand-divider">·</span>
+          <span>{POEMS.length} 首示例诗</span>
         </p>
       </header>
 

@@ -69,11 +69,26 @@ button {
   text-shadow: 0 0 34px rgba(183, 220, 230, 0.2);
 }
 
-.brand p {
+.brand-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 14px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.brand-author {
+  color: rgba(242, 238, 229, 0.72);
+  letter-spacing: 0.04em;
+}
+
+.brand-divider {
+  color: rgba(184, 220, 230, 0.55);
+  letter-spacing: 0;
 }
 
 .enter-button {
