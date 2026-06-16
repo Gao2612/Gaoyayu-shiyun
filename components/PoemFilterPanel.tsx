@@ -61,6 +61,7 @@ export function PoemFilterPanel(
   props: PoemFilterPanelProps,
 ): React.ReactElement {
   const hasMatchedAll: boolean = props.matchedCount === props.totalCount;
+  const hasNoMatch: boolean = props.matchedCount === 0;
 
   return (
     <aside aria-label="诗云筛选" className="poem-filter-panel">
@@ -115,6 +116,11 @@ export function PoemFilterPanel(
         options={props.options.years}
         selectedValues={props.filters.years}
       />
+      {hasNoMatch ? (
+        <p className="poem-filter-empty">
+          暂无符合条件的星体，请清除部分筛选。
+        </p>
+      ) : null}
     </aside>
   );
 }

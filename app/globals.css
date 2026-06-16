@@ -1,10 +1,23 @@
 :root {
   color-scheme: dark;
-  --background: #02040a;
-  --text: #f2eee5;
-  --muted: #8e98aa;
-  --border: rgba(216, 226, 238, 0.24);
-  --accent: #b8dce6;
+  --color-bg: #02040a;
+  --color-bg-soft: #07101f;
+  --color-panel: rgba(7, 13, 27, 0.86);
+  --color-panel-strong: rgba(7, 12, 24, 0.96);
+  --color-text: #f7f0e4;
+  --color-text-soft: rgba(238, 232, 220, 0.76);
+  --color-muted: #9aa6b8;
+  --color-border: rgba(190, 213, 235, 0.24);
+  --color-border-strong: rgba(184, 220, 230, 0.62);
+  --color-accent: #b8dce6;
+  --color-accent-strong: #f3cf9a;
+  --color-empty: rgba(243, 207, 154, 0.76);
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+  --motion-panel: 360ms;
+  --radius-pill: 999px;
+  --radius-panel: 24px;
+  --shadow-panel: 0 22px 64px rgba(0, 0, 0, 0.34);
 }
 
 * {
@@ -21,9 +34,17 @@ body {
 body {
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 45%, #0b1830 0%, #040914 35%, #02040a 70%);
-  color: var(--text);
+    radial-gradient(
+      circle at 50% 45%,
+      #0f1c32 0%,
+      #050a16 38%,
+      var(--color-bg) 74%
+    );
+  color: var(--color-text);
   font-family:
+    "Noto Serif SC",
+    "Songti SC",
+    "STSong",
     "Microsoft YaHei UI",
     "Noto Sans SC",
     sans-serif;
@@ -31,6 +52,14 @@ body {
 
 button {
   font: inherit;
+}
+
+button,
+input {
+  font-family:
+    "Microsoft YaHei UI",
+    "Noto Sans SC",
+    sans-serif;
 }
 
 .app-shell {
@@ -45,6 +74,62 @@ button {
   position: absolute !important;
   inset: 0;
   z-index: -1;
+  transition:
+    filter var(--motion-panel) ease,
+    opacity var(--motion-panel) ease;
+}
+
+.reading-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(2, 4, 10, 0);
+  transition: background-color var(--motion-panel) ease;
+}
+
+.has-selection .galaxy-canvas {
+  filter: brightness(0.45) saturate(0.72);
+  opacity: 0.58;
+}
+
+.has-selection .reading-scrim {
+  background: rgba(2, 4, 10, 0.42);
+}
+
+.loading-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(16, 32, 58, 0.94), #02040a 64%);
+  color: var(--color-text-soft);
+  letter-spacing: 0.18em;
+}
+
+.loading-orbit {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(184, 220, 230, 0.28);
+  border-top-color: var(--color-accent-strong);
+  border-radius: 50%;
+  animation: loading-orbit-spin 900ms linear infinite;
+  box-shadow: 0 0 28px rgba(184, 220, 230, 0.2);
+}
+
+.loading-screen p {
+  margin: 0;
+  font-size: 13px;
+}
+
+@keyframes loading-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .brand {
@@ -53,8 +138,8 @@ button {
   left: clamp(24px, 6vw, 88px);
   pointer-events: none;
   transition:
-    opacity 500ms ease,
-    transform 500ms ease;
+    opacity var(--motion-panel) ease,
+    transform var(--motion-panel) ease;
 }
 
 .brand h1 {
@@ -69,35 +154,53 @@ button {
   text-shadow: 0 0 34px rgba(183, 220, 230, 0.2);
 }
 
+.enter-button,
+.poem-detail-footer button,
+.poem-filter-header button {
+  min-height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: rgba(7, 16, 31, 0.56);
+  color: var(--color-text-soft);
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    opacity var(--motion-fast) ease,
+    transform var(--motion-fast) ease;
+}
+
+.enter-button:hover,
+.poem-detail-footer button:hover,
+.poem-filter-header button:not(:disabled):hover {
+  border-color: var(--color-border-strong);
+  background: rgba(28, 48, 72, 0.62);
+  color: var(--color-text);
+}
+
+.enter-button:focus-visible,
+.poem-detail-footer button:focus-visible,
+.poem-filter-header button:focus-visible,
+.poem-search-results button:focus-visible,
+.poem-detail-close:focus-visible,
+.poem-filter-option input:focus-visible + span {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 3px;
+}
+
 .enter-button {
   position: absolute;
   top: clamp(34px, 5vw, 72px);
   right: clamp(24px, 6vw, 88px);
   min-width: 112px;
   padding: 11px 22px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(4, 9, 20, 0.36);
-  color: var(--text);
-  cursor: pointer;
   letter-spacing: 0.12em;
   backdrop-filter: blur(12px);
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    opacity 180ms ease,
-    transform 180ms ease;
 }
 
 .enter-button:hover {
-  border-color: rgba(184, 220, 230, 0.62);
-  background: rgba(20, 40, 64, 0.52);
   transform: translateY(-1px);
-}
-
-.enter-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
 }
 
 .has-selection .enter-button {
@@ -108,36 +211,36 @@ button {
 
 .poem-search {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   top: clamp(104px, 12vw, 144px);
   left: clamp(24px, 6vw, 88px);
   width: min(360px, calc(100vw - 48px));
-  color: rgba(245, 248, 255, 0.9);
+  color: var(--color-text);
 }
 
 .poem-search-label {
   display: block;
   margin: 0 0 9px;
-  color: rgba(184, 220, 230, 0.72);
+  color: var(--color-accent);
   font-size: 12px;
   letter-spacing: 0.18em;
 }
 
 .poem-search-input {
   width: 100%;
-  border: 1px solid rgba(184, 220, 230, 0.28);
-  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
   padding: 13px 18px;
-  background: rgba(4, 9, 20, 0.48);
-  color: rgba(245, 248, 255, 0.94);
+  background: rgba(2, 6, 14, 0.62);
+  color: var(--color-text);
   font: inherit;
   letter-spacing: 0.06em;
   outline: 0;
   backdrop-filter: blur(14px);
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
 }
 
 .poem-search-input::placeholder {
@@ -145,22 +248,17 @@ button {
 }
 
 .poem-search-input:focus {
-  border-color: rgba(184, 220, 230, 0.74);
-  background: rgba(10, 18, 35, 0.68);
+  border-color: var(--color-border-strong);
+  background: rgba(10, 18, 35, 0.82);
   box-shadow: 0 0 32px rgba(142, 202, 230, 0.14);
 }
 
 .poem-search-results {
   margin-top: 12px;
-  border: 1px solid rgba(164, 208, 255, 0.18);
-  border-radius: 22px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 17, 34, 0.88),
-      rgba(5, 9, 21, 0.94)
-    );
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.26);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-panel);
   overflow: hidden;
   backdrop-filter: blur(18px);
 }
@@ -191,7 +289,7 @@ button {
 
 .poem-search-results button:hover,
 .poem-search-results button:focus-visible {
-  background: rgba(110, 164, 231, 0.13);
+  background: rgba(110, 164, 231, 0.16);
   outline: 0;
 }
 
@@ -212,7 +310,7 @@ button {
 
 .poem-search-result-snippet,
 .poem-search-empty {
-  color: rgba(225, 235, 249, 0.66);
+  color: var(--color-text-soft);
   font-size: 12px;
   line-height: 1.6;
 }
@@ -238,25 +336,20 @@ button {
   max-height: calc(100dvh - 292px);
   gap: 16px;
   overflow-y: auto;
-  border: 1px solid rgba(164, 208, 255, 0.16);
-  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
   padding: 18px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 17, 34, 0.72),
-      rgba(5, 9, 21, 0.82)
-    );
-  color: rgba(245, 248, 255, 0.88);
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.22);
+  background: var(--color-panel);
+  color: var(--color-text-soft);
+  box-shadow: var(--shadow-panel);
   backdrop-filter: blur(18px);
   scrollbar-color:
     rgba(142, 198, 255, 0.36)
     rgba(255, 255, 255, 0.04);
   scrollbar-width: thin;
   transition:
-    opacity 180ms ease,
-    transform 180ms ease;
+    opacity var(--motion-fast) ease,
+    transform var(--motion-fast) ease;
 }
 
 .poem-filter-header {
@@ -268,13 +361,13 @@ button {
 
 .poem-filter-header p {
   margin: 0 0 5px;
-  color: rgba(184, 220, 230, 0.68);
+  color: var(--color-accent);
   font-size: 12px;
   letter-spacing: 0.18em;
 }
 
 .poem-filter-header strong {
-  color: rgba(245, 248, 255, 0.92);
+  color: var(--color-text);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -282,12 +375,7 @@ button {
 
 .poem-filter-header button {
   flex: 0 0 auto;
-  border: 1px solid rgba(184, 220, 230, 0.22);
-  border-radius: 999px;
   padding: 8px 12px;
-  background: rgba(110, 164, 231, 0.08);
-  color: rgba(225, 235, 249, 0.74);
-  cursor: pointer;
   font-size: 12px;
   letter-spacing: 0.1em;
 }
@@ -295,12 +383,6 @@ button {
 .poem-filter-header button:disabled {
   cursor: default;
   opacity: 0.38;
-}
-
-.poem-filter-header button:not(:disabled):hover {
-  border-color: rgba(184, 220, 230, 0.52);
-  background: rgba(110, 164, 231, 0.16);
-  color: rgba(255, 255, 255, 0.94);
 }
 
 .poem-filter-group {
@@ -337,17 +419,17 @@ button {
 
 .poem-filter-option span {
   display: block;
-  border: 1px solid rgba(157, 203, 255, 0.16);
-  border-radius: 999px;
+  border: 1px solid rgba(157, 203, 255, 0.2);
+  border-radius: var(--radius-pill);
   padding: 7px 11px;
   background: rgba(102, 157, 224, 0.06);
-  color: rgba(204, 221, 240, 0.7);
+  color: var(--color-text-soft);
   font-size: 12px;
   letter-spacing: 0.08em;
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
-    color 160ms ease;
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
 }
 
 .poem-filter-option:hover span,
@@ -357,9 +439,20 @@ button {
 }
 
 .poem-filter-option input:checked + span {
-  border-color: rgba(243, 207, 154, 0.55);
+  border-color: rgba(243, 207, 154, 0.7);
   background: rgba(243, 207, 154, 0.16);
   color: rgba(255, 244, 207, 0.94);
+}
+
+.poem-filter-empty {
+  margin: 0;
+  border: 1px solid rgba(243, 207, 154, 0.24);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(243, 207, 154, 0.08);
+  color: var(--color-empty);
+  font-size: 12px;
+  line-height: 1.7;
 }
 
 .has-selection .poem-filter-panel {
@@ -373,7 +466,7 @@ button {
   position: absolute;
   bottom: clamp(24px, 5vw, 60px);
   margin: 0;
-  color: var(--muted);
+  color: var(--color-muted);
   font-size: 13px;
   letter-spacing: 0.12em;
   pointer-events: none;
@@ -406,16 +499,16 @@ button {
   width: min(430px, 100vw);
   height: 100dvh;
   flex-direction: column;
-  border-left: 1px solid rgba(164, 208, 255, 0.2);
+  border-left: 1px solid var(--color-border);
   background:
     linear-gradient(
       180deg,
-      rgba(10, 17, 34, 0.96),
-      rgba(5, 9, 21, 0.98)
+      rgba(11, 17, 31, 0.98),
+      var(--color-panel-strong)
     );
-  box-shadow: -24px 0 64px rgba(0, 0, 0, 0.34);
-  color: rgba(245, 248, 255, 0.9);
-  animation: poem-detail-enter 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: -30px 0 74px rgba(0, 0, 0, 0.46);
+  color: var(--color-text);
+  animation: poem-detail-enter var(--motion-panel) cubic-bezier(0.22, 1, 0.36, 1);
   backdrop-filter: blur(20px);
 }
 
@@ -443,7 +536,7 @@ button {
 
 .poem-detail-collection {
   margin: 0 0 9px;
-  color: rgba(156, 205, 255, 0.64);
+  color: var(--color-accent);
   font-size: 12px;
   letter-spacing: 0.18em;
 }
@@ -463,7 +556,7 @@ button {
   flex: 0 0 auto;
   border: 0;
   background: transparent;
-  color: rgba(225, 235, 249, 0.56);
+  color: var(--color-text-soft);
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -497,20 +590,20 @@ button {
 .poem-detail-content {
   margin: 32px 0 40px;
   overflow-wrap: anywhere;
-  color: rgba(244, 247, 252, 0.88);
+  color: rgba(255, 250, 238, 0.94);
   font-family:
     "Songti SC",
     "STSong",
     serif;
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  line-height: 2.05;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  line-height: 2.12;
   white-space: pre-wrap;
 }
 
 .poem-detail-tags h3 {
   margin: 0 0 14px;
-  color: rgba(204, 221, 240, 0.54);
+  color: var(--color-muted);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -548,18 +641,8 @@ button {
 
 .poem-detail-footer button {
   width: 100%;
-  border: 1px solid rgba(166, 211, 255, 0.28);
-  border-radius: 999px;
   padding: 13px 16px;
-  background: rgba(110, 164, 231, 0.1);
-  color: rgba(244, 248, 255, 0.88);
-  cursor: pointer;
   letter-spacing: 0.12em;
-}
-
-.poem-detail-footer button:hover {
-  border-color: rgba(178, 216, 255, 0.62);
-  background: rgba(110, 164, 231, 0.18);
 }
 
 .poem-detail-footer p {

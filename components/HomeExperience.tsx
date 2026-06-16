@@ -22,6 +22,7 @@ const POEMS: readonly Poem[] = poemData;
 
 export function HomeExperience(): React.ReactElement {
   const [isEntered, setIsEntered] = useState<boolean>(false);
+  const [isSceneReady, setIsSceneReady] = useState<boolean>(false);
   const [filters, setFilters] = useState<PoemFilterState>(
     EMPTY_POEM_FILTERS,
   );
@@ -65,6 +66,10 @@ export function HomeExperience(): React.ReactElement {
 
   function toggleExperience(): void {
     setIsEntered((currentValue: boolean): boolean => !currentValue);
+  }
+
+  function handleSceneReady(): void {
+    setIsSceneReady(true);
   }
 
   function clearFilters(): void {
@@ -114,7 +119,18 @@ export function HomeExperience(): React.ReactElement {
 
   return (
     <main className={shellClassName}>
-      <GalaxyScene matchedPoemIds={matchedPoemIds} poems={POEMS} />
+      <GalaxyScene
+        matchedPoemIds={matchedPoemIds}
+        onReady={handleSceneReady}
+        poems={POEMS}
+      />
+      <div aria-hidden="true" className="reading-scrim" />
+      {isSceneReady ? null : (
+        <div className="loading-screen" role="status">
+          <span className="loading-orbit" />
+          <p>正在点亮诗云</p>
+        </div>
+      )}
 
       <header className="brand">
         <h1>{PROJECT_PROFILE.name}</h1>

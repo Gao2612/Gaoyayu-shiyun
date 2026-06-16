@@ -12,9 +12,9 @@ export type PoemStarVisual = Readonly<{
 const GALAXY_SEED: number = 0x5f3759df;
 const STAR_PALETTE: readonly string[] = [
   "#8ecae6",
-  "#c6b7e2",
+  "#b9add8",
   "#f3cf9a",
-  "#9bd7c5",
+  "#8fd6c8",
   "#efb5c4",
 ];
 

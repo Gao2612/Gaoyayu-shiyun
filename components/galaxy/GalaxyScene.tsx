@@ -1,8 +1,8 @@
 "use client";
 
 import { Sparkles, Stars } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
 
 import { GalaxyCamera } from "@/components/galaxy/GalaxyCamera";
 import { PoemStars } from "@/components/galaxy/PoemStars";
@@ -13,8 +13,29 @@ import type { PoemPosition } from "@/types/poem";
 
 type GalaxySceneProps = Readonly<{
   matchedPoemIds: readonly string[];
+  onReady: () => void;
   poems: readonly Poem[];
 }>;
+
+type SceneReadySignalProps = Readonly<{
+  onReady: () => void;
+}>;
+
+function SceneReadySignal(
+  props: SceneReadySignalProps,
+): null {
+  const hasReportedRef = useRef<boolean>(false);
+
+  useFrame((): void => {
+    if (hasReportedRef.current) {
+      return;
+    }
+    hasReportedRef.current = true;
+    props.onReady();
+  });
+
+  return null;
+}
 
 export function GalaxyScene(
   props: GalaxySceneProps,
@@ -64,6 +85,7 @@ export function GalaxyScene(
         matchedPoemIds={props.matchedPoemIds}
         poems={props.poems}
       />
+      <SceneReadySignal onReady={props.onReady} />
       <GalaxyCamera
         selectedPosition={selectedPosition}
       />
