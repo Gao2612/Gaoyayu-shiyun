@@ -9,6 +9,9 @@ export type Poem = Readonly<{
   location: string | null;
   collection: string;
   emotions: readonly string[];
+  classicalForms: readonly string[];
+  ciTune: string | null;
+  quTune: string | null;
   featured: boolean;
   rating: number;
   position: PoemPosition | null;
@@ -23,6 +26,9 @@ export type PoemFrontmatter = Readonly<{
   location: string | null;
   collection: string;
   emotions: readonly string[];
+  classicalForms: readonly string[];
+  ciTune: string | null;
+  quTune: string | null;
   featured: boolean;
   rating: number;
   relatedPoemIds: readonly string[];

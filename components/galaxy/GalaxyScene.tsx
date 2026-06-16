@@ -12,6 +12,7 @@ import type { Poem } from "@/types/poem";
 import type { PoemPosition } from "@/types/poem";
 
 type GalaxySceneProps = Readonly<{
+  matchedPoemIds: readonly string[];
   poems: readonly Poem[];
 }>;
 
@@ -59,7 +60,10 @@ export function GalaxyScene(
         size={1.2}
         speed={0.12}
       />
-      <PoemStars poems={props.poems} />
+      <PoemStars
+        matchedPoemIds={props.matchedPoemIds}
+        poems={props.poems}
+      />
       <GalaxyCamera
         selectedPosition={selectedPosition}
       />

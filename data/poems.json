@@ -12,6 +12,12 @@
     "emotions": [
       "安静"
     ],
+    "classicalForms": [
+      "五言",
+      "绝句"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": true,
     "rating": 4,
     "relatedPoemIds": [
@@ -33,6 +39,12 @@
     "emotions": [
       "思念"
     ],
+    "classicalForms": [
+      "七言",
+      "绝句"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": false,
     "rating": 3,
     "relatedPoemIds": [
@@ -54,6 +66,12 @@
     "emotions": [
       "怀念"
     ],
+    "classicalForms": [
+      "七言",
+      "律诗"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": false,
     "rating": 4,
     "relatedPoemIds": [
@@ -75,6 +93,11 @@
     "emotions": [
       "辽阔"
     ],
+    "classicalForms": [
+      "赋"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": true,
     "rating": 5,
     "relatedPoemIds": [
@@ -96,6 +119,12 @@
     "emotions": [
       "温柔"
     ],
+    "classicalForms": [
+      "五言",
+      "绝句"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": false,
     "rating": 4,
     "relatedPoemIds": [
@@ -117,6 +146,11 @@
     "emotions": [
       "轻快"
     ],
+    "classicalForms": [
+      "词"
+    ],
+    "ciTune": "浣溪沙",
+    "quTune": null,
     "featured": false,
     "rating": 3,
     "relatedPoemIds": [
@@ -138,6 +172,12 @@
     "emotions": [
       "清醒"
     ],
+    "classicalForms": [
+      "五言",
+      "律诗"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": false,
     "rating": 4,
     "relatedPoemIds": [
@@ -159,6 +199,11 @@
     "emotions": [
       "温暖"
     ],
+    "classicalForms": [
+      "曲"
+    ],
+    "ciTune": null,
+    "quTune": "天净沙",
     "featured": true,
     "rating": 5,
     "relatedPoemIds": [
@@ -182,6 +227,12 @@
       "宁静",
       "思念"
     ],
+    "classicalForms": [
+      "七言",
+      "律诗"
+    ],
+    "ciTune": null,
+    "quTune": null,
     "featured": true,
     "rating": 5,
     "relatedPoemIds": [

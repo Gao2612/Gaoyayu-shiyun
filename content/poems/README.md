@@ -15,6 +15,11 @@ location: "杭州"
 collection: "未归档"
 emotions:
   - 安静
+classicalForms:
+  - 五言
+  - 绝句
+ciTune: null
+quTune: null
 featured: false
 rating: 3
 relatedPoemIds: []
@@ -35,6 +40,10 @@ Front Matter 之后是诗歌正文，支持普通 Markdown 换行。
 - `location`：创作地点，省略时为 `null`。
 - `collection`：诗集名称，省略时为“未归档”。
 - `emotions`：情绪标签列表，省略时为空数组。
+- `classicalForms`：古典诗歌体裁或格律标签，例如“五言”、
+  “七言”、“律诗”、“绝句”、“词”、“曲”、“赋”。
+- `ciTune`：词牌名，例如“浣溪沙”，非词作可省略。
+- `quTune`：曲牌名，例如“天净沙”，非曲作可省略。
 - `featured`：是否重点展示，省略时为 `false`。
 - `rating`：一至五的整数，省略时为 `3`。
 - `relatedPoemIds`：相关诗歌编号，省略时为空数组。

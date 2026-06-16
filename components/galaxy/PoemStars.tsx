@@ -13,6 +13,7 @@ import { useGalaxyStore } from "@/store/galaxy-store";
 import type { Poem } from "@/types/poem";
 
 type PoemStarsProps = Readonly<{
+  matchedPoemIds: readonly string[];
   poems: readonly Poem[];
 }>;
 
@@ -24,6 +25,7 @@ export function PoemStars(
   props: PoemStarsProps,
 ): React.ReactElement {
   const meshRef = useRef<InstancedMesh>(null);
+  const dimmedMeshRef = useRef<InstancedMesh>(null);
   const hitMeshRef = useRef<InstancedMesh>(null);
   const hoveredPoemId = useGalaxyStore(
     (state) => state.hoveredPoemId,
@@ -38,6 +40,10 @@ export function PoemStars(
       createPoemStarVisuals(props.poems),
     [props.poems],
   );
+  const matchedPoemIds: ReadonlySet<string> = useMemo(
+    (): ReadonlySet<string> => new Set(props.matchedPoemIds),
+    [props.matchedPoemIds],
+  );
 
   useEffect((): (() => void) => {
     document.body.style.cursor = hoveredPoemId === null
@@ -51,13 +57,15 @@ export function PoemStars(
 
   useLayoutEffect((): void => {
     const mesh: InstancedMesh | null = meshRef.current;
+    const dimmedMesh: InstancedMesh | null = dimmedMeshRef.current;
     const hitMesh: InstancedMesh | null = hitMeshRef.current;
-    if (mesh === null || hitMesh === null) {
+    if (mesh === null || dimmedMesh === null || hitMesh === null) {
       return;
     }
 
     const transform: Object3D = new Object3D();
     stars.forEach((star: PoemStarVisual, index: number): void => {
+      const isMatched: boolean = matchedPoemIds.has(star.id);
       const isSelected: boolean = star.id === selectedPoemId;
       const isHovered: boolean = star.id === hoveredPoemId;
       const stateScale: number = isSelected
@@ -72,10 +80,15 @@ export function PoemStars(
           : star.color;
 
       transform.position.set(...star.position);
-      transform.scale.setScalar(star.scale * stateScale);
+      transform.scale.setScalar(isMatched ? star.scale * stateScale : 0);
       transform.updateMatrix();
       mesh.setMatrixAt(index, transform.matrix);
       mesh.setColorAt(index, stateColor);
+
+      transform.scale.setScalar(isMatched ? 0 : star.scale * 0.82);
+      transform.updateMatrix();
+      dimmedMesh.setMatrixAt(index, transform.matrix);
+      dimmedMesh.setColorAt(index, star.color);
 
       transform.scale.setScalar(star.scale * 3.4);
       transform.updateMatrix();
@@ -84,14 +97,20 @@ export function PoemStars(
 
     mesh.instanceMatrix.setUsage(StaticDrawUsage);
     mesh.instanceMatrix.needsUpdate = true;
+    dimmedMesh.instanceMatrix.setUsage(StaticDrawUsage);
+    dimmedMesh.instanceMatrix.needsUpdate = true;
     hitMesh.instanceMatrix.setUsage(StaticDrawUsage);
     hitMesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor !== null) {
       mesh.instanceColor.needsUpdate = true;
     }
+    if (dimmedMesh.instanceColor !== null) {
+      dimmedMesh.instanceColor.needsUpdate = true;
+    }
     mesh.computeBoundingSphere();
+    dimmedMesh.computeBoundingSphere();
     hitMesh.computeBoundingSphere();
-  }, [hoveredPoemId, selectedPoemId, stars]);
+  }, [hoveredPoemId, matchedPoemIds, selectedPoemId, stars]);
 
   function getPoemId(event: InstanceEvent): string | null {
     const instanceId: number | undefined = event.instanceId;
@@ -127,6 +146,18 @@ export function PoemStars(
       >
         <sphereGeometry args={[1, 16, 16]} />
         <meshBasicMaterial toneMapped={false} />
+      </instancedMesh>
+      <instancedMesh
+        args={[undefined, undefined, stars.length]}
+        frustumCulled={false}
+        ref={dimmedMeshRef}
+      >
+        <sphereGeometry args={[1, 12, 12]} />
+        <meshBasicMaterial
+          opacity={0.18}
+          toneMapped={false}
+          transparent
+        />
       </instancedMesh>
       <instancedMesh
         args={[undefined, undefined, stars.length]}

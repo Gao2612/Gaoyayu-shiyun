@@ -235,6 +235,146 @@ button {
   transform: translateY(-8px);
 }
 
+.poem-filter-panel {
+  position: absolute;
+  z-index: 3;
+  top: clamp(184px, 23vw, 252px);
+  left: clamp(24px, 6vw, 88px);
+  display: grid;
+  width: min(360px, calc(100vw - 48px));
+  max-height: calc(100dvh - 292px);
+  gap: 16px;
+  overflow-y: auto;
+  border: 1px solid rgba(164, 208, 255, 0.16);
+  border-radius: 24px;
+  padding: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 17, 34, 0.72),
+      rgba(5, 9, 21, 0.82)
+    );
+  color: rgba(245, 248, 255, 0.88);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+  scrollbar-color:
+    rgba(142, 198, 255, 0.36)
+    rgba(255, 255, 255, 0.04);
+  scrollbar-width: thin;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.poem-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.poem-filter-header p {
+  margin: 0 0 5px;
+  color: rgba(184, 220, 230, 0.68);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+
+.poem-filter-header strong {
+  color: rgba(245, 248, 255, 0.92);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.poem-filter-header button {
+  flex: 0 0 auto;
+  border: 1px solid rgba(184, 220, 230, 0.22);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(110, 164, 231, 0.08);
+  color: rgba(225, 235, 249, 0.74);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.poem-filter-header button:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+.poem-filter-header button:not(:disabled):hover {
+  border-color: rgba(184, 220, 230, 0.52);
+  background: rgba(110, 164, 231, 0.16);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.poem-filter-group {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.poem-filter-group legend {
+  margin: 0 0 10px;
+  padding: 0;
+  color: rgba(204, 221, 240, 0.52);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+
+.poem-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.poem-filter-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.poem-filter-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.poem-filter-option span {
+  display: block;
+  border: 1px solid rgba(157, 203, 255, 0.16);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: rgba(102, 157, 224, 0.06);
+  color: rgba(204, 221, 240, 0.7);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.poem-filter-option:hover span,
+.poem-filter-option input:focus-visible + span {
+  border-color: rgba(184, 220, 230, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.poem-filter-option input:checked + span {
+  border-color: rgba(243, 207, 154, 0.55);
+  background: rgba(243, 207, 154, 0.16);
+  color: rgba(255, 244, 207, 0.94);
+}
+
+.has-selection .poem-filter-panel {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
 .interaction-tip,
 .day-status {
   position: absolute;
@@ -457,6 +597,13 @@ button {
     top: 104px;
     left: 24px;
     width: calc(100vw - 48px);
+  }
+
+  .poem-filter-panel {
+    top: 188px;
+    left: 24px;
+    width: calc(100vw - 48px);
+    max-height: calc(100dvh - 288px);
   }
 
   .interaction-tip {
