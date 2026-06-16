@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { GalaxyScene } from "@/components/galaxy/GalaxyScene";
 import { PoemDetailPanel } from "@/components/PoemDetailPanel";
+import { PoemSearchPanel } from "@/components/PoemSearchPanel";
 import poemData from "@/data/poems.json";
 import { PROJECT_PROFILE } from "@/lib/project-profile";
 import { useGalaxyStore } from "@/store/galaxy-store";
@@ -60,6 +61,8 @@ export function HomeExperience(): React.ReactElement {
       >
         {isEntered ? "返回引导" : "进入星云"}
       </button>
+
+      <PoemSearchPanel poems={POEMS} />
 
       <p className="interaction-tip">拖动旋转 · 滚轮缩放</p>
       <p className="day-status">
