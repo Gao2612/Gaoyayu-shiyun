@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "data:build": "tsx scripts/build-poems.ts",
     "vectors:build": "npm run data:build && tsx scripts/build-poem-vectors.ts",
-    "prebuild": "npm run data:build",
+    "layout:build": "npm run vectors:build && tsx scripts/build-poem-layout.ts",
+    "prebuild": "npm run layout:build",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -22,6 +23,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "three": "^0.184.0",
+    "umap-js": "^1.4.0",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
   },

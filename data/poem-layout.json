@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "layoutVersion": "semantic-umap-3d-v1",
+  "generatedAt": "2026-06-17T00:40:12.018Z",
+  "sourceVectorModelVersion": "local-chinese-ngram-v1",
+  "sourceVectorDimensions": 128,
+  "umap": {
+    "dimensions": 3,
+    "neighbors": 8,
+    "epochs": 360,
+    "minDist": 0.12,
+    "spread": 1.6,
+    "randomSeed": 1779033703
+  },
+  "normalization": {
+    "targetRadius": 5.6,
+    "minDistance": 0.54,
+    "overlapIterations": 18,
+    "themeOffsetStrength": 0.28,
+    "timeOffsetStrength": 0.42
+  },
+  "processing": {
+    "startedAt": "2026-06-17T00:40:11.749Z",
+    "finishedAt": "2026-06-17T00:40:12.018Z",
+    "durationMs": 268.1,
+    "totalCount": 30,
+    "minimumDistance": 0.7465,
+    "averageNearestNeighborDistance": 1.6712
+  },
+  "positions": [
+    {
+      "poemId": "001",
+      "title": "晨雾",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        4.7846,
+        0.503,
+        -2.4458
+      ]
+    },
+    {
+      "poemId": "002",
+      "title": "雨线",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        4.4407,
+        0.7713,
+        2.261
+      ]
+    },
+    {
+      "poemId": "003",
+      "title": "旧站台",
+      "collection": "远行",
+      "year": "2024",
+      "position": [
+        0.2309,
+        -0.7821,
+        2.5701
+      ]
+    },
+    {
+      "poemId": "004",
+      "title": "无声海",
+      "collection": "远行",
+      "year": "2024",
+      "position": [
+        2.3264,
+        2.1369,
+        3.6814
+      ]
+    },
+    {
+      "poemId": "005",
+      "title": "纸上月亮",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        3.3293,
+        1.2865,
+        1.8676
+      ]
+    },
+    {
+      "poemId": "006",
+      "title": "晚风来信",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        -3.9974,
+        0.4982,
+        2.92
+      ]
+    },
+    {
+      "poemId": "007",
+      "title": "山中回声",
+      "collection": "远行",
+      "year": "2024",
+      "position": [
+        1.2015,
+        -0.0819,
+        4.7153
+      ]
+    },
+    {
+      "poemId": "008",
+      "title": "雪后灯火",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        0.6055,
+        -4.7605,
+        -1.3581
+      ]
+    },
+    {
+      "poemId": "009",
+      "title": "群山来信",
+      "collection": "远行",
+      "year": "2025",
+      "position": [
+        2.3837,
+        0.9037,
+        4.4344
+      ]
+    },
+    {
+      "poemId": "010",
+      "title": "春水桥",
+      "collection": "梦痕",
+      "year": "2024",
+      "position": [
+        0.6684,
+        2.6517,
+        0.1266
+      ]
+    },
+    {
+      "poemId": "011",
+      "title": "夜泊",
+      "collection": "远行",
+      "year": "2024",
+      "position": [
+        0.9318,
+        -2.955,
+        2.6034
+      ]
+    },
+    {
+      "poemId": "012",
+      "title": "秋园",
+      "collection": "微光",
+      "year": "2024",
+      "position": [
+        -3.6167,
+        -1.0612,
+        -0.8026
+      ]
+    },
+    {
+      "poemId": "013",
+      "title": "登楼",
+      "collection": "山河",
+      "year": "2024",
+      "position": [
+        0.0869,
+        -3.0318,
+        -2.2993
+      ]
+    },
+    {
+      "poemId": "014",
+      "title": "浣溪沙·雨后",
+      "collection": "梦痕",
+      "year": "2024",
+      "position": [
+        -4.2832,
+        2.092,
+        1.526
+      ]
+    },
+    {
+      "poemId": "015",
+      "title": "如梦令·灯下",
+      "collection": "灯影",
+      "year": "2024",
+      "position": [
+        -3.3915,
+        0.5531,
+        -3.2081
+      ]
+    },
+    {
+      "poemId": "016",
+      "title": "天净沙·归帆",
+      "collection": "远行",
+      "year": "2024",
+      "position": [
+        -1.0522,
+        0.3096,
+        -4.0383
+      ]
+    },
+    {
+      "poemId": "017",
+      "title": "山坡羊·古渡",
+      "collection": "山河",
+      "year": "2025",
+      "position": [
+        -3.3483,
+        -1.3546,
+        -2.4367
+      ]
+    },
+    {
+      "poemId": "018",
+      "title": "小园赋",
+      "collection": "微光",
+      "year": "2025",
+      "position": [
+        -4.9396,
+        2.1953,
+        0.4003
+      ]
+    },
+    {
+      "poemId": "019",
+      "title": "梅边",
+      "collection": "梦痕",
+      "year": "2025",
+      "position": [
+        3.1345,
+        1.5166,
+        -1.7434
+      ]
+    },
+    {
+      "poemId": "020",
+      "title": "客中春晚",
+      "collection": "远行",
+      "year": "2025",
+      "position": [
+        2.3222,
+        0.396,
+        -3.4627
+      ]
+    },
+    {
+      "poemId": "021",
+      "title": "听雨",
+      "collection": "灯影",
+      "year": "2025",
+      "position": [
+        -1.8949,
+        1.6947,
+        0.4746
+      ]
+    },
+    {
+      "poemId": "022",
+      "title": "临江仙·江月",
+      "collection": "山河",
+      "year": "2025",
+      "position": [
+        0.4805,
+        -4.4064,
+        0.2309
+      ]
+    },
+    {
+      "poemId": "023",
+      "title": "蝶恋花·春尽",
+      "collection": "梦痕",
+      "year": "2025",
+      "position": [
+        -4.3133,
+        1.7477,
+        -0.587
+      ]
+    },
+    {
+      "poemId": "024",
+      "title": "清江引·荷风",
+      "collection": "微光",
+      "year": "2025",
+      "position": [
+        -2.349,
+        -1.0732,
+        3.0565
+      ]
+    },
+    {
+      "poemId": "025",
+      "title": "秋怀",
+      "collection": "山河",
+      "year": "2025",
+      "position": [
+        -1.3579,
+        -3.7317,
+        -0.3046
+      ]
+    },
+    {
+      "poemId": "026",
+      "title": "水调歌头·问月",
+      "collection": "灯影",
+      "year": "2025",
+      "position": [
+        0.3659,
+        0.884,
+        -1.021
+      ]
+    },
+    {
+      "poemId": "027",
+      "title": "雪夜书怀",
+      "collection": "灯影",
+      "year": "2025",
+      "position": [
+        4.7163,
+        -0.3924,
+        -1.5781
+      ]
+    },
+    {
+      "poemId": "028",
+      "title": "折桂令·旧城",
+      "collection": "山河",
+      "year": "2026",
+      "position": [
+        -3.0974,
+        0.654,
+        -3.8868
+      ]
+    },
+    {
+      "poemId": "029",
+      "title": "归园",
+      "collection": "微光",
+      "year": "2026",
+      "position": [
+        3.3356,
+        0.0408,
+        1.7765
+      ]
+    },
+    {
+      "poemId": "030",
+      "title": "长安赋",
+      "collection": "山河",
+      "year": "2026",
+      "position": [
+        0.6855,
+        0.7563,
+        -4.2368
+      ]
+    }
+  ]
+}

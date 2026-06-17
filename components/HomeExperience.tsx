@@ -18,7 +18,7 @@ import { PROJECT_PROFILE } from "@/lib/project-profile";
 import { useGalaxyStore } from "@/store/galaxy-store";
 import type { Poem } from "@/types/poem";
 
-const POEMS: readonly Poem[] = poemData;
+const POEMS: readonly Poem[] = poemData as unknown as readonly Poem[];
 
 export function HomeExperience(): React.ReactElement {
   const [isEntered, setIsEntered] = useState<boolean>(false);

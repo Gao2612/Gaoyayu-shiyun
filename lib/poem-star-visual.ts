@@ -75,7 +75,7 @@ export function createPoemStarVisual(
 ): PoemStarVisual {
   return {
     id: poem.id,
-    position: createStablePosition(poem.id),
+    position: poem.position ?? createStablePosition(poem.id),
     scale: createStarScale(poem),
     color: createStarColor(poem),
   };
