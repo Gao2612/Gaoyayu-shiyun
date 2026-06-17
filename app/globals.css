@@ -774,6 +774,23 @@ input {
   margin: 0 auto;
 }
 
+.admin-form > .admin-card:nth-of-type(3) {
+  order: -1;
+  border-color: rgba(255, 244, 207, 0.38);
+  background:
+    linear-gradient(135deg, rgba(255, 244, 207, 0.08), transparent 42%),
+    var(--color-panel);
+}
+
+.admin-form > .admin-card:nth-of-type(3) h2::after {
+  content: "（先在这里粘贴或输入你的诗词）";
+  margin-left: 10px;
+  color: var(--color-accent);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
 .admin-card,
 .admin-preview,
 .admin-actions {
